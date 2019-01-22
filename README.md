@@ -6,5 +6,6 @@ I built a site that uses Axios web scraping tools to pull all of the articles fr
 
 To Run simply download
 run "npm install"
-then run "mongo" in your terminal to start your mongo server
-&  Finally  "Node server.js"
+    "npm i express"
+then run "mongo" in your terminal to start your mongo server on the backend.
+&  finally  "Node server.js"
