@@ -66,33 +66,20 @@ $(document).on("click", "#savenote", function() {
       console.log(data);
       // Empty the notes section
       $("#notes").empty();
-      $("#notes").append("<button data-id='" + data._id + "' id='deletenote'>delete Note</button>");
-      $("#notes").append(data._id);
+      $("#notes").append("<button data-id='" + data + "' id='deletenote'>delete Note</button>");
+      $("#notes").append("<li data-id= '"+data.note+"' id='note_saver'>yes</li>");
+  
       
     });
           
 
     $(document).on("click", "#deletenote", function() {
-      var thisId = $(this).attr("data-id");
+      
     $.ajax({
       method: "DELETE",
       url: "/articles/" + thisId,
-      data: {
-        // Value taken from title input
-        title: $("#titleinput").val(data.note.title),
-        // Value taken from note textarea
-        body: $("#bodyinput").val(data.note.body)
-      }
+      
     })
-    .then(function(data) {
-      // Log the response
-      console.log(data);
-      // Empty the notes section
-      $("#notes").empty();
-    });
-
-  // Also, remove the values entered in the input and textarea for note entry
-  $("#titleinput").val("");
-  $("#bodyinput").val("");
+   
   })
 });

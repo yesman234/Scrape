@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Scraping With Mongoose</title>
     <style>
-      body { background-color: #F2F6D0 }
+      body { background-color: rgb(208, 209, 246) }
       #wrapper {
         width: 960px;
         margin-left: auto;
         margin-right: auto;
         padding-top: 5%;
+        border-block-end: 50px;
       }
       #articles {
         display: inline-block;
@@ -21,6 +22,11 @@
         float: right;
         width: 30%;
       }
+      .jumbotron{
+        display: block;
+        background-color:green;
+      }
+     
       textarea, input {
         display: block;
         width: 100%;
@@ -37,12 +43,18 @@
     </style>
   </head>
   <body>
+      <div class ="jumbotron">
     <div id="wrapper">
+      
       <h1>Note Scraper</h1>
       <h2><i>We Scraped the site successfully</i></h2>
       <div id="articles"></div>
       <div id="notes"></div>
+      <div id="notes_saver"></div>
+
+      
     </div>
+  </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>

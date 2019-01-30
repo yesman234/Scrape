@@ -27,19 +27,19 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/IRS", { useNewUrlParser: true });
 
 // Routes
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
-  axios.get("http://www.economist.com/").then(function (response) {
+  axios.get("https://blog.newrelic.com/engineering/best-javascript-libraries-frameworks/").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function (i, element) {
+    $("article h3").each(function (i, element) {
       // Save an empty result object
       var result = {};
 
@@ -64,7 +64,7 @@ app.get("/scrape", function (req, res) {
     });
 
     // Send a message to the client
-    res.send("Scrape Complete");
+    res.send("dbArticle");
   });
 });
 
@@ -98,8 +98,6 @@ app.get("/articles/:id", function (req, res) {
 });
 // Route for saving/updating an Article's associated Note
 app.post("/articles/:id", function (req, res) {
-  // TODO
-  // ====
   // save the new note that gets posted to the Notes collection
   // then find an article from the req.params.id
   // and update it's "note" property with the _id of the new note
@@ -114,23 +112,22 @@ app.post("/articles/:id", function (req, res) {
       res.json(err);
     })
 });
+// delete functionality
 app.delete("/articles/:id", function (req, res) {
-  // TODO
-  // ====
   // save the new note that gets posted to the Notes collection
   // then find an article from the req.params.id
   // and update it's "note" property with the _id of the new note
-  db.Note.findOneAndDelete(req.body)
+  db.Note.deleteOne(req.body)
     .then(function (dbNote) {
-      return db.Article.findOneAndDelete({ _id: req.params.id }, { note: dbNote._id }, { new: true });
-    })
-    .then(function (dbArticle) {
-      res.json(dbArticle);
+      return db.Note.deleteOne({ note: dbNote._id }, { new: true });
     })
     .catch(function (err) {
       res.json(err);
+    });
+   console.log("deleted")
     })
-});
+
+
 
 // Start the server
 app.listen(PORT, function () {
