@@ -1,20 +1,20 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+let express = require("express");
+let logger = require("morgan");
+let mongoose = require("mongoose");
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+let axios = require("axios");
+let cheerio = require("cheerio");
 
 // Require all models
-var db = require("./models");
+let db = require("./models");
 
-var PORT = 3000;
+let PORT = 3000;
 
 // Initialize Express
-var app = express();
+let app = express();
 
 // Configure middleware
 

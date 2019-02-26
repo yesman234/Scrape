@@ -1,5 +1,5 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
+$.getJSON("/articles", function (data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
@@ -9,11 +9,11 @@ $.getJSON("/articles", function(data) {
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "p", function () {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
-  var thisId = $(this).attr("data-id");
+  let thisId = $(this).attr("data-id");
 
   // Now make an ajax call for the Article
   $.ajax({
@@ -21,7 +21,7 @@ $(document).on("click", "p", function() {
     url: "/articles/" + thisId
   })
     // With that done, add the note information to the page
-    .then(function(data) {
+    .then(function (data) {
       console.log(data);
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
@@ -44,10 +44,10 @@ $(document).on("click", "p", function() {
 });
 
 // When you click the savenote button
-$(document).on("click", "#savenote", function() {
+$(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr("data-id");
-  
+  let thisId = $(this).attr("data-id");
+
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
@@ -61,25 +61,44 @@ $(document).on("click", "#savenote", function() {
     }
   })
     // With that done
-    .then(function(data) {
+    .then(function (data) {
       // Log the response
       console.log(data);
       // Empty the notes section
       $("#notes").empty();
       $("#notes").append("<button data-id='" + data + "' id='deletenote'>delete Note</button>");
-      $("#notes").append("<li data-id= '"+data.note+"' id='note_saver'>yes</li>");
-  
-      
-    });
-          
+      $("#notes").append("<button data-id='" + data + "' id='getnote'>get Note</button>");
 
-    $(document).on("click", "#deletenote", function() {
-      
+
+
+    });
+
+  $(document).on("click", "#getnote", function () {
+
+    $.ajax({
+      method: "GET",
+      url: "/articles/" + thisId,
+
+    })
+      .then(function (data) {
+        console.log(data);
+        // The title of the article
+        $("#notes").append("<h2>" + data.link + "</h2>");
+        $("#notes").append("<h2>" + data.title + "</h2>");
+        $("#notes").append("<h2>" + data.note.title + "</h2>");
+        $("#notes").append("<h2>" + data.note.body + "</h2>");
+        
+
+
+      });
+  })
+  $(document).on("click", "#deletenote", function () {
+
     $.ajax({
       method: "DELETE",
       url: "/articles/" + thisId,
-      
+
     })
-   
+
   })
 });
