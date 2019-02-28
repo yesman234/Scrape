@@ -1,7 +1,7 @@
 {
   "name": "mongoose_skeleton",
   "version": "1.0.0",
-  "description": "",
+  "description": "Using Axios to scrape website for data and cheerio to store it.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,5 +18,14 @@
     "express": "^4.16.4",
     "mongoose": "^5.3.16",
     "morgan": "^1.9.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yesman234/Scrape.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yesman234/Scrape/issues"
+  },
+  "homepage": "https://github.com/yesman234/Scrape#readme"
 }
