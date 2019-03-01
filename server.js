@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://user:Garagec250@ds155665.mlab.com:55665/heroku_hsm8f83m", { useNewUrlParser: true });
+mongoose.connect("mongodb://user:Garagec250@ds125255.mlab.com:25255/heroku_xcqzpk2r", { useNewUrlParser: true });
 
 // Routes
 
