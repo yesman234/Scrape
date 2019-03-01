@@ -1,6 +1,5 @@
 let express = require("express");
 let logger = require("morgan");
-let mongodb = require('mongodb').MongoClient;
 let mongoose = require("mongoose");
 
 // Our scraping tools
@@ -28,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://admin:Garagec250@ds337985.mlab.com:37985/project3", { useNewUrlParser: true });
+mongoose.connect("mongodb://user:Garagec250@ds155665.mlab.com:55665/heroku_hsm8f83m", { useNewUrlParser: true });
 
 // Routes
 
