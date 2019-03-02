@@ -1,6 +1,9 @@
 {
   "name": "mongoose_skeleton",
   "version": "1.0.0",
+  "engines": {
+    "node": "11.2.0"
+  },
   "description": "Using Axios to scrape website for data and cheerio to store it.",
   "main": "server.js",
   "scripts": {
