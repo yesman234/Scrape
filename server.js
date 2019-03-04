@@ -3,7 +3,7 @@ let logger = require("morgan");
 let mongoose = require("mongoose");
 mongoose.Promise=global.Promise;
 mongoose.set('debug',true);
-const CONNECTION_URI = process.env.MONGODB_URI || "mongodb://localhost/users";
+const CONNECTION_URI = process.env.MONGODB_URI || "mongodb://localhost/IRS";
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
