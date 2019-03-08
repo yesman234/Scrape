@@ -3,7 +3,7 @@ let logger = require("morgan");
 let mongoose = require("mongoose");
 mongoose.Promise=global.Promise;
 mongoose.set('debug',true);
-const CONNECTION_URI = process.env.MONGODB_URI || "mongodb://localhost/IRS";
+// const CONNECTION_URI = process.env.MONGODB_URI || "mongodb+srv://user123:Garagec250@cluster0-o5kvx.mongodb.net/test?retryWrites=true";
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
@@ -32,14 +32,14 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 // this connect method works locally but When i push it to Heroku I have to use Mlab as an interface with mongodb.
 // mongoose.connect("mongodb://localhost/IRS", { useNewUrlParser: true });
-// mongoose.connect("mongodb://heroku_xcqzpk2r:9ij1kroubjbcj4155el7v087do@ds125255.mlab.com:25255/heroku_xcqzpk2r", { useNewUrlParser: true });
-mongoose.connect(CONNECTION_URI, {
-  useMongoClient: true
-})
-.then(() => {
-  console.log('connected to mongo db');
-})
-.catch(err => console.log(err));
+mongoose.connect("mongodb://heroku_xcqzpk2r:9ij1kroubjbcj4155el7v087do@ds125255.mlab.com:25255/heroku_xcqzpk2r", { useNewUrlParser: true });
+// mongoose.connect(CONNECTION_URI, {
+//   useNewUrlParser: true
+// })
+// .then(() => {
+//   console.log('connected to mongo db');
+// })
+// .catch(err => console.log(err));
 // Routes
 
 // A GET route for scraping the echoJS website
