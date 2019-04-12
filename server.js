@@ -32,7 +32,7 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 // this connect method works locally but When i push it to Heroku I have to use Mlab as an interface with mongodb.
 // mongoose.connect("mongodb://localhost/IRS", { useNewUrlParser: true });
-mongoose.connect("mongodb://heroku_xcqzpk2r:9ij1kroubjbcj4155el7v087do@ds125255.mlab.com:25255/heroku_xcqzpk2r", { useNewUrlParser: true });
+mongoose.connect("mongodb://admin:Garagec250@ds337985.mlab.com:37985/project3", { useNewUrlParser: true });
 // mongoose.connect(CONNECTION_URI, {
 //   useNewUrlParser: true
 // })
