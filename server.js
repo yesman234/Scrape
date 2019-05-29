@@ -1,8 +1,8 @@
 let express = require("express");
 let logger = require("morgan");
 let mongoose = require("mongoose");
-mongoose.Promise=global.Promise;
-mongoose.set('debug',true);
+// mongoose.Promise=global.Promise;
+// mongoose.set('debug',true);
 // const CONNECTION_URI = process.env.MONGODB_URI || "mongodb+srv://user123:Garagec250@cluster0-o5kvx.mongodb.net/test?retryWrites=true";
 
 // Our scraping tools
@@ -31,8 +31,13 @@ app.use(express.static("public"));
 
 // Connect to the Mongo DB
 // this connect method works locally but When i push it to Heroku I have to use Mlab as an interface with mongodb.
-// mongoose.connect("mongodb://localhost/IRS", { useNewUrlParser: true });
-mongoose.connect("mongodb://admin:Garagec250@ds337985.mlab.com:37985/project3", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/NEW", { useNewUrlParser: true })
+
+// mongoose.connect("mongodb://admin:Garagec250@ds337985.mlab.com:37985/project3", { useNewUrlParser: true })
+.then(() => {
+    console.log('connected to mongo db');
+  })
+  .catch(err => console.log(err));
 // mongoose.connect(CONNECTION_URI, {
 //   useNewUrlParser: true
 // })
@@ -50,7 +55,7 @@ app.get("/scrape", function (req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h3").each(function (i, element) {
+    $("article, h3").each(function (i, element) {
       // Save an empty result object
       var result = {};
 
