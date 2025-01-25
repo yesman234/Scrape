@@ -1,17 +1,13 @@
+# Exported from Render on 2025-01-25T18:46:19Z
 services:
-  - type: web # A Python web service named django-app running on a free instance
-    plan: starter
-    name: scrape    
-    runtime: node
-    repo: https://github.com/yesman234/Scrape.git
-    #buildCommand: "./build.sh"
-    startCommand: "npm run start"
-    envVars:
-      - key: mongodb+srv://mj:Ddw9l3eWJyUiy2qT@cluster0.jvcm8.mongodb.net/ # Sets DATABASE_URL to the connection string of the django-app-db database
-        fromDatabase:
-          name: mongodb
-          property: connectionString
-
-databases:
-  - name: mongodb # A PostgreSQL database named django-app-db running on a free instance
-    plan: free
+- type: web
+  name: scrape
+  runtime: node
+  repo: https://github.com/yesman234/Scrape
+  plan: starter
+  envVars:
+  - key: mongodb+srv://mj:Ddw9l3eWJyUiy2qT@cluster0.jvcm8.mongodb.net/
+    sync: true
+  region: oregon
+  startCommand: npm run start
+version: "1"
