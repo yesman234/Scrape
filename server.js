@@ -1,13 +1,6 @@
 let express = require("express");
 let logger = require("morgan");
 let mongoose = require("mongoose");
-// mongoose.Promise=global.Promise;
-// mongoose.set('debug',true);
-// const CONNECTION_URI = process.env.MONGODB_URI || "mongodb+srv://user123:Garagec250@cluster0-o5kvx.mongodb.net/test?retryWrites=true";
-
-// Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
 let axios = require("axios");
 let cheerio = require("cheerio");
 
@@ -31,21 +24,13 @@ app.use(express.static("public"));
 
 // Connect to the Mongo DB
 // this connect method works locally but When i push it to Heroku I have to use Mlab as an interface with mongodb.
-mongoose.connect("mongodb://localhost/NEW", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://mj:Ddw9l3eWJyUiy2qT@cluster0.jvcm8.mongodb.net/")
 
-// mongoose.connect("mongodb://admin:Garagec250@ds337985.mlab.com:37985/project3", { useNewUrlParser: true })
 .then(() => {
     console.log('connected to mongo db');
   })
   .catch(err => console.log(err));
-// mongoose.connect(CONNECTION_URI, {
-//   useNewUrlParser: true
-// })
-// .then(() => {
-//   console.log('connected to mongo db');
-// })
-// .catch(err => console.log(err));
-// Routes
+
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
@@ -53,9 +38,8 @@ app.get("/scrape", function (req, res) {
   axios.get("https://blog.newrelic.com/engineering/best-javascript-libraries-frameworks/").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article, h3").each(function (i, element) {
+    $("article, h2").each(function (i, element) {
       // Save an empty result object
       var result = {};
 
@@ -71,7 +55,7 @@ app.get("/scrape", function (req, res) {
       db.Article.create(result)
         .then(function (dbArticle) {
           // View the added result in the console
-          console.log(dbArticle);
+          console.log("dbArticle");
         })
         .catch(function (err) {
           // If an error occurred, log it
