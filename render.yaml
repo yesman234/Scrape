@@ -1,11 +1,9 @@
 # Exported from Render on 2025-01-25T18:46:19Z
-services:
 - type: web
   name: scrape
   runtime: node
   repo: https://github.com/yesman234/Scrape
   plan: starter
-  envVars:
   - key: mongodb+srv://mj:Ddw9l3eWJyUiy2qT@cluster0.jvcm8.mongodb.net/
     sync: true
   region: oregon
