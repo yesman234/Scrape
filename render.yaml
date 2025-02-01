@@ -1,14 +1,4 @@
 # Exported from Render on 2025-01-25T18:46:19Z
-- type: web
-  name: scrape
-  runtime: node
-  repo: https://github.com/yesman234/Scrape
-  plan: starter
-  - key: mongodb+srv://mj:Ddw9l3eWJyUiy2qT@cluster0.jvcm8.mongodb.net/
-    sync: true
-  region: oregon
-  startCommand: npm run start
-version: "1"
 
 
 # Comments are provided throughout this file to help you get started.
@@ -22,7 +12,7 @@ version: "1"
 # You can add other services your application may depend on here.
 
 services:
-  todo-app:
+  scrape:
     build:
       context: ./app
     depends_on:
