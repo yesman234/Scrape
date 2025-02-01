@@ -24,7 +24,7 @@ app.use(express.static("public"));
 
 // Connect to the Mongo DB
 // this connect method works locally but When i push it to Heroku I have to use Mlab as an interface with mongodb.
-mongoose.connect("mongodb+srv://mj:Ddw9l3eWJyUiy2qT@cluster0.jvcm8.mongodb.net/")
+mongoose.connect("mongodb+srv://yesman234:p7xBH7nYcGTuZHBW@cluster0.jvcm8.mongodb.net/")
 
 .then(() => {
     console.log('connected to mongo db');
@@ -42,6 +42,7 @@ app.get("/scrape", function (req, res) {
     // Now, we grab every h2 within an article tag, and do the following:
     $("article, h2").each(function (i, element) {
       // Save an empty result object
+      console.log(element,'<<<>>',i)
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
@@ -51,13 +52,13 @@ app.get("/scrape", function (req, res) {
       result.link = $(this)
         .children("a")
         .attr("href");
+        console.log(result)
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function (dbArticle) {
           // View the added result in the console
           let [x,y] = [Object.keys(dbArticle),Object.values(dbArticle)]
-          console.log(`${x+'<<<'+y}`)
-
+          console.log(`${dbArticle}`)
           //return `${response.data+' <<<'}`
         })
         .catch(function (err) {
@@ -65,8 +66,6 @@ app.get("/scrape", function (req, res) {
           console.log(err);
         });
     });
-
-    // Send a message to the client
 
     res.send(response.data);
   });
@@ -78,7 +77,7 @@ app.get("/articles", function (req, res) {
   db.Article.find({})
     .then(function (dbArticle) {
       res.json(dbArticle);
-      console.log(dbArticle.length,'<<len')
+      console.log(dbArticle.length,'<<len',dbArticle.params)
     })
     .catch(function (err) {
       res.json(err);

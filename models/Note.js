@@ -1,5 +1,4 @@
 let mongoose = require("mongoose");
-
 // Save a reference to the Schema constructor
 let Schema = mongoose.Schema;
 
@@ -9,7 +8,11 @@ let NoteSchema = new Schema({
   // `title` is of type String
   title: String,
   // `body` is of type String
-  body: String
+  body: String,
+  created_at: {
+    type: Date,
+    default: Date.now()
+}
 });
 
 // This creates our model from the above schema, using mongoose's model method
